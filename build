@@ -11,13 +11,13 @@ make install
 cd ..
 
 cd mpfr
-./configure --prefix=$C/usr
+./configure --prefix=$C/usr --with-gmp=$C/usr
 make
 make install
 cd ..
 
 cd mpc
-./configure --prefix=$C/usr
+./configure --prefix=$C/usr --with-gmp=$C/usr --with-mpfr=$C/usr
 make
 make install
 cd ..
@@ -26,8 +26,8 @@ mkdir gcc-build
 cd gcc-build
 ../gcc/configure --prefix=$C/gcc-trunk \
     --enable-languages=c,fortran \
-    --with-gmp  --with-gmp-lib=$C/usr/lib  --with-gmp-include=$C/usr/include \
-    --with-mpfr --with-mpfr-lib=$C/usr/lib --with-mpfr-include=$C/usr/include \
-    --with-mpc  --with-mpc-lib=$C/usr/lib  --with-mpc-include=$C/usr/include
+    --with-gmp=$C/usr \
+    --with-mpfr=$C/usr \
+    --with-mpc=$C/usr
 make
 make install
