@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -e
+
+CUR=`pwd`
+mkdir gcc-build
+cd gcc-build
+../gcc-4.7.1/configure --prefix=$CUR/gcc-trunk --enable-languages=c,fortran
+make
+make install
