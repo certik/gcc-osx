@@ -5,6 +5,8 @@ set -e
 CUR=`pwd`
 mkdir gcc-build
 cd gcc-build
-../gcc-4.7.1/configure --prefix=$CUR/gcc-trunk --enable-languages=c,fortran
+../gcc-4.7.1/configure --prefix=$CUR/gcc-trunk \
+    --enable-languages=c,fortran \
+    --with-mpfr-include=$CUR/gcc-4.7.1/mpfr/src
 make
 make install
