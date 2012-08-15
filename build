@@ -2,11 +2,32 @@
 
 set -e
 
-CUR=`pwd`
+C=`pwd`
+
+cd gmp
+./configure --prefix=$C/usr
+make
+make install
+cd ..
+
+cd mpfr
+./configure --prefix=$C/usr
+make
+make install
+cd ..
+
+cd mpc
+./configure --prefix=$C/usr
+make
+make install
+cd ..
+
 mkdir gcc-build
 cd gcc-build
-../gcc-4.7.1/configure --prefix=$CUR/gcc-trunk \
+../gcc/configure --prefix=$C/gcc-trunk \
     --enable-languages=c,fortran \
-    --with-mpfr-include=$CUR/gcc-4.7.1/mpfr/src
+    --with-gmp  --with-gmp-lib=$C/usr/lib  --with-gmp-include=$C/usr/include \
+    --with-mpfr --with-mpfr-lib=$C/usr/lib --with-mpfr-include=$C/usr/include \
+    --with-mpc  --with-mpc-lib=$C/usr/lib  --with-mpc-include=$C/usr/include
 make
 make install
