@@ -22,6 +22,9 @@ make
 make install
 cd ..
 
+# Otherwise the second stage compiler can't find the .so anymore...
+rm $C/usr/lib/*.so*
+
 mkdir gcc-build
 cd gcc-build
 ../gcc/configure --prefix=$C/gcc-trunk \
